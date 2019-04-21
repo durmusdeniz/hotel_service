@@ -39,7 +39,7 @@ public class Hotel {
 
     }
 
-    
+
     //TODO method to return booked rooms
     //TODO method to return booked rooms btw certain dates
 
