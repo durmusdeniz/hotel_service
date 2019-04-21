@@ -2,10 +2,10 @@ package la.demo.hotelapp.service;
 
 
 import com.google.api.client.util.DateTime;
-import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
+import la.demo.hotelapp.HotelappApplication;
 import la.demo.hotelapp.entity.Guest;
 import la.demo.hotelapp.entity.Room;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,6 @@ public class GoogleCalendarService {
 
     public void addCalendarEvent(
             List<Guest> guests,
-            Calendar calendarClient,
             LocalDate checkIn,
             LocalDate checkout,
             Room bookedRoom) throws IOException {
@@ -36,7 +35,7 @@ public class GoogleCalendarService {
         roomBooking.setStart(new EventDateTime().setDateTime(DateTime.parseRfc3339(checkIn.toString())));
         roomBooking.setEnd(new EventDateTime().setDateTime(DateTime.parseRfc3339(checkout.toString())));
 
-        calendarClient.events().insert("primary", roomBooking).execute();
+        HotelappApplication.GOOGLE_CAL_CLIENT.events().insert("primary", roomBooking).execute();
 
 
     }
