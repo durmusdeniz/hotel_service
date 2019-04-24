@@ -7,6 +7,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.AclRule;
+import la.demo.hotelapp.entity.Hotel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.util.ResourceUtils;
@@ -20,9 +21,10 @@ public class HotelappApplication {
 
 
 	public static Calendar GOOGLE_CAL_CLIENT;
-
+	public static Hotel DEMO_HOTEL;
 	@PostConstruct
 	public void init(){
+		DEMO_HOTEL = new Hotel("Demo Hotel", 5,5);
 		try{
 
 			HttpTransport googleTransport = GoogleNetHttpTransport.newTrustedTransport();

@@ -3,6 +3,7 @@ package la.demo.hotelapp.controller;
 
 import la.demo.hotelapp.entity.Room;
 import la.demo.hotelapp.service.HotelService;
+import la.demo.hotelapp.util.RoomBookRequest;
 import la.demo.hotelapp.util.RoomCheckRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class HotelController {
     }
 
     @PostMapping("/bookroom")
-    public ResponseEntity<Boolean> makeBooking(){
-        return ResponseEntity.ok(hotelService.bookRoom());
+    public ResponseEntity<Boolean> makeBooking(@RequestBody RoomBookRequest bookingRequest){
+        return ResponseEntity.ok(hotelService.bookRoom(bookingRequest));
     }
 
 }
