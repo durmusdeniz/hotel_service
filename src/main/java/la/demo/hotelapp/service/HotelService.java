@@ -10,13 +10,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class HotelService {
 
 
 
-    public List<Room> getEmptyRooms(RoomCheckRequest roomCheckRequest){
+    public Set<Room> getEmptyRooms(RoomCheckRequest roomCheckRequest){
+        return HotelappApplication
+                .DEMO_HOTEL
+                .listEmptyRooms(roomCheckRequest.getCheckInDay(), roomCheckRequest.getCheckOutDay());
+    }
+
+
+    public Set<Room> getAllRooms(RoomCheckRequest roomCheckRequest){
+        //TODO
         return null;
     }
 

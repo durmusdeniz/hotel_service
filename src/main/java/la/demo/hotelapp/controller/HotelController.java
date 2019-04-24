@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class HotelController {
@@ -23,13 +24,18 @@ public class HotelController {
 
 
     @PostMapping("/listemptyrooms")
-    public ResponseEntity<List<Room>> listAvaiableRooms(@RequestBody RoomCheckRequest roomCheckRequest){
+    public ResponseEntity<Set<Room>> listAvaiableRooms(@RequestBody RoomCheckRequest roomCheckRequest){
         return ResponseEntity.ok(hotelService.getEmptyRooms(roomCheckRequest));
     }
 
     @PostMapping("/bookroom")
     public ResponseEntity<Boolean> makeBooking(@RequestBody RoomBookRequest bookingRequest){
         return ResponseEntity.ok(hotelService.bookRoom(bookingRequest));
+    }
+
+    @PostMapping("/listrooms")
+    public ResponseEntity<Set<Room>> listAllRooms(@RequestBody RoomCheckRequest roomCheckRequest){
+        return ResponseEntity.ok(hotelService.getAllRooms(roomCheckRequest));
     }
 
 }
