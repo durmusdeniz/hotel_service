@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Hotel Room Booking Application</title>
+    <script type="application/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+    <script type="application/javascript" src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+    <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script type="text/babel" src="js/room.jsx"></script>
+</head>
+<body>
+
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+
+        const rootDiv = document.getElementById("root");
+
+        class Hotel extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    checkInDay:'2019-04-24',
+                    checkOutDay:'2019-04-25',
+                    rooms:[]
+                }
+                this.bookRoom = this.bookRoom.bind(this);
+                this.listRooms = this.listRooms.bind(this);
+                this.captureCheckIn = this.captureCheckIn.bind(this);
+                this.captureCheckOut = this.captureCheckOut.bind(this);
+                this.captureCheckGuests = this.captureCheckGuests.bind(this);
+            }
+
+            render(){
+                return(
+                    <div className="container">
+
+                    </div>
+                );
+            }
+
+
+            bookRoom(e){
+                //Stub
+            }
+
+            captureCheckIn(e){
+                //Stub
+            }
+
+            captureCheckOut(e){
+                //Stub
+            }
+
+            captureCheckGuests(e){
+                //Stub
+            }
+
+            listRooms(){
+                //Stub
+            }
+        }
+
+        function App() {
+            return(
+                <div>
+                    <Hotel/>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App/>, rootDiv);
+
+
+    </script>
+
+
+
+
+
+</body>
+</html>
