@@ -61,5 +61,20 @@ public class Hotel {
         return rooms;
     }
 
+    public void bookRoom(Room roomToBook, LocalDate checkIn, LocalDate checkOut){
+
+        LocalDate dayToBook = checkIn;
+        while(dayToBook.isBefore(checkOut)){
+            if(hotelrooms.containsKey(dayToBook)){
+                hotelrooms.get(dayToBook).add(roomToBook);
+            }else{
+                hotelrooms.put(dayToBook, new HashSet<>());
+                hotelrooms.get(dayToBook).add(roomToBook);
+            }
+
+            dayToBook = dayToBook.plusDays(1);
+        }
+
+    }
 
 }
