@@ -37,30 +37,81 @@
             render(){
                 return(
                     <div className="container">
-
+                        <div className="block">
+                            <label className="label label-default" htmlFor="checkin">Check In</label>
+                            <input type="date" id="checkin" name="checkin" onChange={this.captureCheckIn}></input>
+                        </div>
+                        <div className="block">
+                            <label className="label label-default" htmlFor="checkout">Check Out</label>
+                            <input type="date" id="checkout" name="checkout" onChange={this.captureCheckOut}></input>
+                        </div>
+                        <div className="container">
+                            <h4>Rooms</h4>
+                            <div className="block">
+                                <p>Rooms will be here</p>
+                            </div>
+                        </div>
+                        <button className="btn btn-success">List Rooms</button>
                     </div>
                 );
             }
 
 
             bookRoom(e){
-                //Stub
+
+                this.setState(
+                    {
+                        checkInDay: this.state.checkInDay,
+                        checkOutDay: this.state.checkOutDay,
+                        rooms:[]
+                    }
+                );
             }
 
             captureCheckIn(e){
-                //Stub
+
+                this.setState(
+                    {
+                        checkInDay: this.state.checkInDay,
+                        checkOutDay: this.state.checkOutDay,
+                        rooms:[]
+                    }
+                );
             }
 
             captureCheckOut(e){
-                //Stub
+
+                this.setState(
+                    {
+                        checkInDay: this.state.checkInDay,
+                        checkOutDay: this.state.checkOutDay,
+                        rooms:[]
+                    }
+                );
             }
 
             captureCheckGuests(e){
-                //Stub
+
+
+                this.setState(
+                    {
+                        checkInDay: this.state.checkInDay,
+                        checkOutDay: this.state.checkOutDay,
+                        rooms:[]
+                    }
+                );
             }
 
             listRooms(){
-                //Stub
+
+
+                this.setState(
+                    {
+                        checkInDay: this.state.checkInDay,
+                        checkOutDay: this.state.checkOutDay,
+                        rooms:[]
+                    }
+                );
             }
         }
 
@@ -76,10 +127,5 @@
 
 
     </script>
-
-
-
-
-
 </body>
 </html>
