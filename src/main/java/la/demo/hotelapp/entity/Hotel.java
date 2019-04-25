@@ -12,6 +12,25 @@ public class Hotel {
     private HashSet<DoubleBedRoom> doubleBedRooms;
     private HashSet<SingleBedRoom> singleBedRooms;
 
+
+    public Set<Room> listRooms(LocalDate checkIn, LocalDate checkOut){
+        Set<Room> rooms = new HashSet<>();
+
+        rooms.addAll(singleBedRooms);
+        rooms.addAll(doubleBedRooms);
+
+        Set<Room> emptyRooms = listEmptyRooms(checkIn,checkOut);
+
+        rooms.stream().forEach(room -> room.setOccupied(true));
+
+        for(Room emptyRoom : emptyRooms){
+            emptyRoom.setOccupied(false);
+            rooms.add(emptyRoom);
+        }
+
+        return rooms;
+    }
+
     public Hotel(String hotelName, Integer singleRoomCapacity, Integer doubleRoomCapacity){
 
         this.hotelName = hotelName;
@@ -38,10 +57,6 @@ public class Hotel {
         }
 
     }
-
-
-    //TODO method to return booked rooms
-    //TODO method to return booked rooms btw certain dates
 
     public Set<Room> listEmptyRooms(LocalDate checkIn, LocalDate checkOut){
 

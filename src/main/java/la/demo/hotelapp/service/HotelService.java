@@ -3,6 +3,7 @@ package la.demo.hotelapp.service;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import la.demo.hotelapp.HotelappApplication;
+import la.demo.hotelapp.entity.Hotel;
 import la.demo.hotelapp.entity.Room;
 import la.demo.hotelapp.util.RoomBookRequest;
 import la.demo.hotelapp.util.RoomCheckRequest;
@@ -15,8 +16,7 @@ import java.util.Set;
 @Service
 public class HotelService {
 
-
-
+    
     public Set<Room> getEmptyRooms(RoomCheckRequest roomCheckRequest){
         return HotelappApplication
                 .DEMO_HOTEL
@@ -26,7 +26,7 @@ public class HotelService {
 
     public Set<Room> getAllRooms(RoomCheckRequest roomCheckRequest){
         //TODO
-        return null;
+        return HotelappApplication.DEMO_HOTEL.listRooms(roomCheckRequest.getCheckInDay(), roomCheckRequest.getCheckOutDay());
     }
 
 

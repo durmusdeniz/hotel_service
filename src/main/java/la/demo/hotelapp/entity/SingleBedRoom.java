@@ -5,7 +5,16 @@ import java.util.Objects;
 public class SingleBedRoom implements Room {
 
     String roomCode;
+    Boolean occupied;
 
+    public Boolean getOccupied() {
+        return occupied;
+    }
+
+    @Override
+    public void setOccupied(Boolean occupied) {
+        this.occupied = occupied;
+    }
 
     public SingleBedRoom(String roomCode) {
         this.roomCode = "SingleRoom#" + roomCode;

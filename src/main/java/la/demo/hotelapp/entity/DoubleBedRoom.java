@@ -6,7 +6,16 @@ public class DoubleBedRoom implements Room
 {
 
     String roomCode;
+    Boolean occupied;
 
+    public Boolean getOccupied() {
+        return occupied;
+    }
+
+    @Override
+    public void setOccupied(Boolean occupied) {
+        this.occupied = occupied;
+    }
 
     public DoubleBedRoom(String roomCode) {
         this.roomCode = "DoubleRoom#"+roomCode;
