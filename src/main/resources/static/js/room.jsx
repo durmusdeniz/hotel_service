@@ -4,15 +4,16 @@ class Room  extends React.Component{
         super(props);
         this.state ={
             id : props.id,
-            type : props.type,
-            occupied:props.occupied
+            roomCode : props.roomCode,
+            occupied:props.occupied,
+            capacity: props.capacity
         }
     }
 
 
     render(){
         return(
-            <button className="btn btn-success">StubRoom</button>
+            <button id={this.state.id} onClick={this.props.book} className={this.state.occupied == true ? "btn btn-danger":"btn btn-success"}>{this.state.roomCode}</button>
         );
     }
 }
