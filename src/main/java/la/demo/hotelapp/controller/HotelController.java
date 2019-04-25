@@ -22,6 +22,11 @@ public class HotelController {
     private HotelService hotelService;
 
 
+    @PostMapping("/bookwithroom")
+    public ResponseEntity<Set<Room>> makeBookingV2(@RequestBody RoomBookRequest bookingRequest){
+        return ResponseEntity.ok(hotelService.bookRoomV2(bookingRequest));
+    }
+
 
     @PostMapping("/listemptyrooms")
     public ResponseEntity<Set<Room>> listAvaiableRooms(@RequestBody RoomCheckRequest roomCheckRequest){
