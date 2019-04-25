@@ -16,7 +16,7 @@ import java.util.Set;
 @Service
 public class HotelService {
 
-    
+
     public Set<Room> getEmptyRooms(RoomCheckRequest roomCheckRequest){
         return HotelappApplication
                 .DEMO_HOTEL
@@ -25,9 +25,44 @@ public class HotelService {
 
 
     public Set<Room> getAllRooms(RoomCheckRequest roomCheckRequest){
-        //TODO
-        return HotelappApplication.DEMO_HOTEL.listRooms(roomCheckRequest.getCheckInDay(), roomCheckRequest.getCheckOutDay());
+        return HotelappApplication
+                .DEMO_HOTEL
+                .listRooms(roomCheckRequest.getCheckInDay(), roomCheckRequest.getCheckOutDay());
     }
+
+
+
+    public Set<Room> bookRoomV2(RoomBookRequest bookingRequest){
+
+
+        Optional<Room> roomTobook;
+
+        if(bookingRequest.getGuests().size() == 2){
+            roomTobook = HotelappApplication
+                    .DEMO_HOTEL
+                    .listEmptyRooms(bookingRequest.getCheckInDay(), bookingRequest.getCheckOutDay())
+                    .stream()
+                    .filter(room -> room.getCapacity()==2 && room.getRoomCode().equalsIgnoreCase(bookingRequest.getRoomCode()))
+                    .findFirst();
+        }else{
+            roomTobook = HotelappApplication
+                    .DEMO_HOTEL
+                    .listEmptyRooms(bookingRequest.getCheckInDay(),bookingRequest.getCheckOutDay())
+                    .stream()
+                    .filter(room -> room.getCapacity()==1 && room.getRoomCode().equalsIgnoreCase(bookingRequest.getRoomCode()))
+                    .findFirst();
+        }
+
+        if(roomTobook.isPresent()){
+            HotelappApplication.DEMO_HOTEL.bookRoom(roomTobook.get(), bookingRequest.getCheckInDay(), bookingRequest.getCheckOutDay());
+        }else{
+            System.out.println("No Booking");
+        }
+
+
+        return getAllRooms(new RoomCheckRequest(bookingRequest.getCheckInDay(), bookingRequest.getCheckOutDay()));
+    }
+
 
 
     public Boolean bookRoom(RoomBookRequest bookingRequest){
