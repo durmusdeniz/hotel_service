@@ -13,6 +13,51 @@ public class Hotel {
     private HashSet<SingleBedRoom> singleBedRooms;
 
 
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public HashMap<LocalDate, HashSet<Room>> getHotelrooms() {
+        return hotelrooms;
+    }
+
+    public void setHotelrooms(HashMap<LocalDate, HashSet<Room>> hotelrooms) {
+        this.hotelrooms = hotelrooms;
+    }
+
+    public HashSet<DoubleBedRoom> getDoubleBedRooms() {
+        return doubleBedRooms;
+    }
+
+    public void setDoubleBedRooms(HashSet<DoubleBedRoom> doubleBedRooms) {
+        this.doubleBedRooms = doubleBedRooms;
+    }
+
+    public HashSet<SingleBedRoom> getSingleBedRooms() {
+        return singleBedRooms;
+    }
+
+    public void setSingleBedRooms(HashSet<SingleBedRoom> singleBedRooms) {
+        this.singleBedRooms = singleBedRooms;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hotel hotel = (Hotel) o;
+        return Objects.equals(hotelName, hotel.hotelName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(hotelName);
+    }
+
     public Set<Room> listRooms(LocalDate checkIn, LocalDate checkOut){
         Set<Room> rooms = new HashSet<>();
 

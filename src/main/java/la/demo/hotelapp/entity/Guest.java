@@ -25,6 +25,11 @@ public class Guest {
         this.email = email;
     }
 
+    public Guest(String fullname, String email) {
+        this.fullname = fullname;
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
