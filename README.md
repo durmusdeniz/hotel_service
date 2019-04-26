@@ -9,4 +9,6 @@ You will need `maven` and `jdk8` installed on the machine.
 
 
 - Besides the maven dependencies, you will need a `p12` file with your API credentials places to the `resources` folder to use `Google Calendar` integration. You may check [Google Developer Console](https://console.developers.google.com/) for the details about how to enable Google APIs and get your p12 file. Copy p12 file as `google.p12` into the resources folder.
-- After the p12 file, open the [HotelappApplication.java](https://github.com/durmusdeniz/hotel_service/blob/master/src/main/java/la/demo/hotelapp/HotelappApplication.java) and put your email address linked with the Google Services, and your service account id. These are needed for auth purposes with Google Service.
+- After the p12 file, open the [HotelappApplication.java](https://github.com/durmusdeniz/hotel_service/blob/master/src/main/java/la/demo/hotelapp/HotelappApplication.java) and put your email address linked with the Google Services, and your service account id. These are needed for auth purposes with Google Service. Alternatively, you can use application.properties file and inject these values too.
+
+- Once you start up the application, you can access http://localhost:8080/swagger-ui.html to access the documentation.
