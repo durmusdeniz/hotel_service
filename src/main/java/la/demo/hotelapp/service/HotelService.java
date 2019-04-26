@@ -7,6 +7,7 @@ import la.demo.hotelapp.entity.Hotel;
 import la.demo.hotelapp.entity.Room;
 import la.demo.hotelapp.util.RoomBookRequest;
 import la.demo.hotelapp.util.RoomCheckRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,9 @@ import java.util.Set;
 
 @Service
 public class HotelService {
+
+    @Autowired
+    private GoogleCalendarService calendarService;
 
 
     public Set<Room> getEmptyRooms(RoomCheckRequest roomCheckRequest){
@@ -55,6 +59,7 @@ public class HotelService {
 
         if(roomTobook.isPresent()){
             HotelappApplication.DEMO_HOTEL.bookRoom(roomTobook.get(), bookingRequest.getCheckInDay(), bookingRequest.getCheckOutDay());
+            calendarService.addCalendarEvent(bookingRequest.getGuests(), bookingRequest.getCheckInDay(), bookingRequest.getCheckOutDay(), roomTobook.get());
         }else{
             System.out.println("No Booking");
         }

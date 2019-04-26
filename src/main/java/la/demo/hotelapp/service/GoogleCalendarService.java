@@ -12,8 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 @Service
 public class GoogleCalendarService {
@@ -24,18 +27,23 @@ public class GoogleCalendarService {
             List<Guest> guests,
             LocalDate checkIn,
             LocalDate checkout,
-            Room bookedRoom) throws IOException {
+            Room bookedRoom) {
 
-        List<EventAttendee> guestList = new ArrayList<>();
+        try{
+            List<EventAttendee> guestList = new ArrayList<>();
+            guests.stream().forEach(guest -> guestList.add(new EventAttendee().setDisplayName(guest.getFullname()).setEmail(guest.getEmail().trim())));
 
-        guests.stream().forEach(guest -> guestList.add(new EventAttendee().setDisplayName(guest.getFullname()).setEmail(guest.getEmail())));
+            Event roomBooking = new Event().setSummary("Reservation").setLocation(bookedRoom.toString()).setAttendees(guestList);
+            roomBooking.setStart(new EventDateTime().setDateTime(new DateTime(Date.from(checkIn.atTime(LocalTime.of(13,0,0)).atZone(TimeZone.getDefault().toZoneId()).toInstant()))));
+            roomBooking.setEnd(new EventDateTime().setDateTime(new DateTime(Date.from(checkout.atTime(LocalTime.of(12,0,0)).atZone(TimeZone.getDefault().toZoneId()).toInstant()))));
 
-        Event roomBooking = new Event().setSummary("Reservation").setLocation(bookedRoom.toString()).setAttendees(guestList);
-        //TODO check the conversion formats
-        roomBooking.setStart(new EventDateTime().setDateTime(DateTime.parseRfc3339(checkIn.toString())));
-        roomBooking.setEnd(new EventDateTime().setDateTime(DateTime.parseRfc3339(checkout.toString())));
+            HotelappApplication.GOOGLE_CAL_CLIENT.events().insert("primary", roomBooking).execute();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
 
-        HotelappApplication.GOOGLE_CAL_CLIENT.events().insert("primary", roomBooking).execute();
+
+
 
 
     }
