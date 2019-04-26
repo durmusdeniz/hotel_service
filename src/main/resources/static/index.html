@@ -40,10 +40,12 @@
                         <label className="label label-default" htmlFor="checkin">Check In</label>
                         <input type="date" id="checkin" name="checkin" onChange={this.captureCheckIn}></input>
                     </div>
+
                     <div className="block">
                         <label className="label label-default" htmlFor="checkout">Check Out</label>
                         <input type="date" id="checkout" name="checkout" onChange={this.captureCheckOut}></input>
                     </div>
+
                     <button className="btn btn-success" onClick={this.listRooms}>List Rooms</button>
                     <div className="container">
                         <h4>Rooms</h4>
@@ -67,6 +69,15 @@
             }
             let guests=[];
 
+            this.setState(
+                {
+                    checkInDay: this.state.checkInDay,
+                    checkOutDay: this.state.checkOutDay,
+                    rooms:[]
+                }
+            );
+
+
             if(selectedRoom.capacity == 2){
                 let guest1Detail = prompt("Please enter first guest's fullname and email\ni.e'Firsname Lastname,email@email.com'");
                 let guest2Detail = prompt("Please enter second guest's fullname and email\ni.e'Firsname Lastname,email@email.com'");
@@ -84,13 +95,7 @@
             }
 
 
-            this.setState(
-                {
-                    checkInDay: this.state.checkInDay,
-                    checkOutDay: this.state.checkOutDay,
-                    rooms:[]
-                }
-            );
+
             fetch('/bookwithroom', {
                 method: 'POST',
                 headers: {

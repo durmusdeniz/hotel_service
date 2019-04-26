@@ -38,14 +38,9 @@ public class GoogleCalendarService {
             roomBooking.setEnd(new EventDateTime().setDateTime(new DateTime(Date.from(checkout.atTime(LocalTime.of(12,0,0)).atZone(TimeZone.getDefault().toZoneId()).toInstant()))));
 
             HotelappApplication.GOOGLE_CAL_CLIENT.events().insert("primary", roomBooking).execute();
-        }catch (IOException e){
+        }catch (Exception e){
             e.printStackTrace();
         }
-
-
-
-
-
     }
 
 

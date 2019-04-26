@@ -20,6 +20,10 @@ import java.util.Arrays;
 public class HotelappApplication {
 
 
+	static String googleServiceAccountId = "";
+	static String calendarOwnerMail = "";
+	static String googleAppName="hotel-app";
+
 	public static Calendar GOOGLE_CAL_CLIENT;
 	public static Hotel DEMO_HOTEL;
 	@PostConstruct
@@ -29,7 +33,7 @@ public class HotelappApplication {
 
 			HttpTransport googleTransport = GoogleNetHttpTransport.newTrustedTransport();
 			JacksonFactory googleJsonFactory = JacksonFactory.getDefaultInstance();
-			String serviceAccountId = "service-id-from-google";
+			String serviceAccountId = googleServiceAccountId;
 			File googleP12File = ResourceUtils.getFile("classpath:google.p12");
 			GoogleCredential googleCredential = new GoogleCredential.Builder()
 					.setTransport(googleTransport)
@@ -38,11 +42,11 @@ public class HotelappApplication {
 					.setServiceAccountScopes(Arrays.asList(CalendarScopes.CALENDAR))
 					.setServiceAccountPrivateKeyFromP12File(googleP12File)
 					.build();
-			GOOGLE_CAL_CLIENT = new Calendar.Builder(googleTransport, googleJsonFactory,googleCredential).setApplicationName("hotel-app").build();
+			GOOGLE_CAL_CLIENT = new Calendar.Builder(googleTransport, googleJsonFactory,googleCredential).setApplicationName(googleAppName).build();
 
 			AclRule.Scope aclScope = new AclRule.Scope();
 			aclScope.setType("user");
-			aclScope.setValue("denizdurmus87@yandex.com");
+			aclScope.setValue(calendarOwnerMail);
 			AclRule aclRule = new AclRule();
 			aclRule.setScope(aclScope);
 			aclRule.setRole("owner");
